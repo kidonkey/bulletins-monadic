@@ -7,7 +7,7 @@
 // Click on a node to display on console
 
 let a;
-let aMonthAgo = '01/07/2020'
+// let aMonthAgo = '01/07/2020'
 let selectedString = '';
 let stringBuffer = '';
 
@@ -31,18 +31,26 @@ function mousePressed () {
   })
 }
 
+function aMonthAgo() { // Generate date for a month ago (needs FIXING)
+  let today = new Date();
+  let dd = String(today.getDate()+1).padStart(2, '0');
+  let mm = String((today.getMonth()-1 < 0? 11: today.getMonth()-1)+1).padStart(2, '0'); //January is 0!
+  let yyyy = today.getMonth()-1 < 0? today.getFullYear()-1: today.getFullYear();
+  return dd + '/' + mm + '/' + yyyy;
+}
+
 function preload() {
   // To load directly from Congress API (very slow)
   // 'fecha' must not surpass a month from present date
-  // a = loadXML('https://www.senado.cl/wspublico/tramitacion.php?fecha=01/07/2020');
-  a = loadXML('tramitacion.php');
+  a = loadXML('https://www.senado.cl/wspublico/tramitacion.php?fecha='+aMonthAgo());
+  //a = loadXML('tramitacion.php');
 }
 
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  console.log(a.children.length + ' boletines encontrados')
-  console.log(a);
+  console.log(a.children.length + ' boletines encontrados desde '+aMonthAgo())
+
   // dataFromXML(a);
   // console.log(data);
   makeSelection('');
