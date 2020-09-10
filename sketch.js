@@ -7,24 +7,8 @@
 // Click on a node to display on console
 
 let a;
-// let aMonthAgo = '01/07/2020'
 let selectedString = '';
 let stringBuffer = '';
-
-function loadScript(scriptUrl) {
-  const script = document.createElement('script');
-  script.src = scriptUrl;
-  document.body.appendChild(script);
-
-  return new Promise((res, rej) => {
-    script.onload = function(a) {
-      res();
-    }
-    script.onerror = function () {
-      rej();
-    }
-  });
-}
 
 
 
@@ -64,24 +48,16 @@ function preload() {
   // To load directly from Congress API (very slow)
   // 'fecha' must not surpass a month from present date
   // a = loadXML('https://www.senado.cl/wspublico/tramitacion.php?fecha=08/09/2020');
-  // a = loadXML('tramitacion.php');
-  a = loadScript('https://www.senado.cl/wspublico/tramitacion.php?fecha=01/09/2020')
-    .then(() => {
-      console.log('Script loaded!');
-    })
-    .catch(() => {
-      console.error('Script loading failed! Handle this error');
-    });
+  a = loadXML('tramitacion.php');
 }
 
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  // console.log(a.children.length + ' boletines encontrados desde '+aMonthAgo())
+  console.log(a.children.length + ' boletines encontrados desde '+aMonthAgo())
 
   console.log(a);
   // dataFromXML(a);
-  // console.log(data);
   // noLoop();
   makeSelection('');
 }
