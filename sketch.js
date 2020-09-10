@@ -76,7 +76,8 @@ function setup() {
   loadScript('https://www.senado.cl/wspublico/tramitacion.php?fecha=01/09/2020')
     .then((d) => {
       console.log('Script loaded!');
-      a = loadXML('https://www.senado.cl/wspublico/tramitacion.php');
+      loop();
+      a = loadXML('https://www.senado.cl/wspublico/tramitacion.php?fecha=01/09/2020');
       makeSelection('');
     })
     .catch(() => {
@@ -84,7 +85,7 @@ function setup() {
     });
   // dataFromXML(a);
   // console.log(data);
-
+  noLoop();
 }
 
 function draw() {
