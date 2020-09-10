@@ -47,8 +47,8 @@ function aMonthAgo() { // Generate date for a month ago (needs FIXING)
 function preload() {
   // To load directly from Congress API (very slow)
   // 'fecha' must not surpass a month from present date
-  // a = loadXML('https://www.senado.cl/wspublico/tramitacion.php?fecha=08/09/2020');
-  a = loadXML('tramitacion.php');
+  a = loadXML('https://www.senado.cl/wspublico/tramitacion.php?fecha=13/08/2020');
+  // a = loadXML('tramitacion.php');
 }
 
 
