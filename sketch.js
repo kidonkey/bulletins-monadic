@@ -10,32 +10,6 @@ let a;
 let selectedString = '';
 let stringBuffer = '';
 
-
-
-function foo(obj) {
-  console.log(obj);
-}
-
-// INTERACTION
-function keyTyped () {
-  if (keyCode === ENTER) {
-    selectedString = stringBuffer;
-    stringBuffer = '';
-    makeSelection(selectedString);
-  } else {
-    stringBuffer += key;
-  }
-}
-
-function mousePressed () {
-  a.children.forEach( b => {
-    if (dist(mouseX-width/2, mouseY-height/2, b.pos[0],b.pos[1]) < 5) {
-      console.log(b.children[0].content);
-      console.log(b.children[10].content);
-    }
-  })
-}
-
 function aMonthAgo() { // Generate date for a month ago (needs FIXING)
   let today = new Date();
   let dd = String(today.getDate()+1).padStart(2, '0');
@@ -51,14 +25,17 @@ function preload() {
   a = loadXML('tramitacion.php');
 }
 
-
+function inputEvent() {
+  makeSelection(this.value());
+}
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  console.log('Encontrados' + a.children.length + ' proyectos con actividad entre 19/08/2020 al 10/09/2020')
+  projects = a.children;
+  console.log(projects);
+  createP('Encontrados ' + a.children.length + ' proyectos con actividad entre 19/08/2020 y 10/09/2020').position(0,0);
+  inp = createInput('').position(width/2,height/2);
+  inp.input(inputEvent);
 
-  console.log(a);
-  // dataFromXML(a);
-  // noLoop();
   makeSelection('');
 }
 
@@ -77,8 +54,8 @@ function draw() {
     ellipse(b.pos[0],b.pos[1],d,d);
     i++;
   });
-  noStroke(), textAlign(CENTER), fill('white'), textFont('Courier'), textSize(12);
-  text (selectedString,0,0);
+  // noStroke(), textAlign(CENTER), fill('white'), textFont('Courier'), textSize(12);
+  // text (selectedString,0,0);
 
 }
 
@@ -132,4 +109,26 @@ function countWords (string) {
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
+}
+
+// INTERACTION
+function keyTyped () {
+  if (keyCode === ENTER) {
+    selectedString = stringBuffer;
+    stringBuffer = '';
+    makeSelection(selectedString);
+  } else {
+    stringBuffer += key;
+  }
+}
+
+function mousePressed () {
+  projects.forEach( b => {
+    if (dist(mouseX-width/2, mouseY-height/2, b.pos[0],b.pos[1]) < 5) {
+      console.log(b.children[0].content);
+      console.log(b.children[10].content);
+      createP(b.children[0].children[1].content); //titulo
+      createP('<a href='+b.children[0].children[12].content+'>Descargar Mensaje/Moción</a>'); //link
+    }
+  })
 }
