@@ -66,11 +66,8 @@ function preload() {
   // a = loadXML('https://www.senado.cl/wspublico/tramitacion.php?fecha=08/09/2020');
   // a = loadXML('tramitacion.php');
   a = loadScript('https://www.senado.cl/wspublico/tramitacion.php?fecha=01/09/2020')
-    .then((d) => {
+    .then(() => {
       console.log('Script loaded!');
-      loop();
-      a = loadXML('https://www.senado.cl/wspublico/tramitacion.php?fecha=01/09/2020');
-      makeSelection('');
     })
     .catch(() => {
       console.error('Script loading failed! Handle this error');
@@ -82,20 +79,11 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   // console.log(a.children.length + ' boletines encontrados desde '+aMonthAgo())
 
-  // use
-  loadScript('https://www.senado.cl/wspublico/tramitacion.php?fecha=01/09/2020')
-    .then((d) => {
-      console.log('Script loaded!');
-      loop();
-      a = loadXML('https://www.senado.cl/wspublico/tramitacion.php?fecha=01/09/2020');
-      makeSelection('');
-    })
-    .catch(() => {
-      console.error('Script loading failed! Handle this error');
-    });
+  console.log(a);
   // dataFromXML(a);
   // console.log(data);
-  noLoop();
+  // noLoop();
+  makeSelection('');
 }
 
 function draw() {
