@@ -65,6 +65,16 @@ function preload() {
   // 'fecha' must not surpass a month from present date
   // a = loadXML('https://www.senado.cl/wspublico/tramitacion.php?fecha=08/09/2020');
   // a = loadXML('tramitacion.php');
+  a = loadScript('https://www.senado.cl/wspublico/tramitacion.php?fecha=01/09/2020')
+    .then((d) => {
+      console.log('Script loaded!');
+      loop();
+      a = loadXML('https://www.senado.cl/wspublico/tramitacion.php?fecha=01/09/2020');
+      makeSelection('');
+    })
+    .catch(() => {
+      console.error('Script loading failed! Handle this error');
+    });
 }
 
 
