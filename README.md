@@ -1,6 +1,6 @@
 # bulletins-monadic
 
-Bulletin (Proyecto de Ley) Explorator
+Bulletin (Proyecto de Ley) Visual Exploration System
 
 A visualization of monthly bulletin data from the Chilean Congress
 
