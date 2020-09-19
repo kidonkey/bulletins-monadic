@@ -32,7 +32,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   projects = a.children;
   console.log(projects);
-  createP('Encontrados ' + a.children.length + ' proyectos con actividad entre 19/08/2020 y 10/09/2020').position(0,0);
+  createP('<h1>Proyectos de Ley</h1> Encontrados ' + a.children.length + ' proyectos con actividad entre 19/08/2020 y 10/09/2020').position(0,0);
   inp = createInput('').position(width/2,height/2);
   inp.input(inputEvent);
 
